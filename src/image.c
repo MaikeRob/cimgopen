@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include "../headers/image.h"
@@ -5,6 +6,10 @@
 
 //Calcula a quantidade de digitos de um inteiro*/
 int numberofDigits(int number) { return ((int)floor(log10(number)) + 1); }
+
+IMAGE createIMAGE(){
+
+}
 
 /*Constrói uma estrutura imagem usando
  os dados do buffer retirado do arquivo*/
@@ -56,15 +61,34 @@ void freeImage(IMAGE *image) {
 }
 
 IMAGE *imageScaler(IMAGE *image, int new_width, int new_height){
-  IMAGE new_image = *image;
+  //Aloca uma nova estrutura imagem para receber a imagem redimensionada
+  IMAGE *new_image = (IMAGE *)malloc(sizeof(IMAGE));
+  new_image->width = new_width;
+  new_image->height = new_height;
+
+  // Aloca uma data_matriz para a nova imagem
+  new_image->data_matriz = malloc(new_height * sizeof(RGB *));
+  for (int i = 0; i < new_height; i++)
+    *(new_image->data_matriz + i) = malloc(new_width * sizeof(RGB));
+
+  
   unsigned int factor = 2;
   unsigned int sum_red = 0, sum_green = 0, sum_blue = 0;
-  for(int i = 0; i < new_height; i++){
-    for(int j = 0; j < new_width; j++){
-      for(int k = 0; k < factor*factor; k++){
-        
+  for(int new_y = 0; new_y < new_height; new_y++){
+    for(int new_x = 0; new_x < new_width; new_x++){
+      sum_red = 0, sum_green = 0, sum_blue = 0;
+      for(int i = 0; i < factor; i++){
+        for(int j = 0; j < factor; j++){
+          sum_red += image->data_matriz[new_y*factor+i][new_x*factor+j].red;
+          sum_green += image->data_matriz[new_y*factor+i][new_x*factor+j].green;
+          sum_blue += image->data_matriz[new_y*factor+i][new_x*factor+j].blue;
+        }
       }
+      new_image->data_matriz[new_y][new_x].red = sum_red / (factor*factor);
+      new_image->data_matriz[new_y][new_x].green = sum_green / (factor*factor);
+      new_image->data_matriz[new_y][new_x].blue = sum_blue / (factor*factor);
     }
   }
+  return new_image;
 } 
 

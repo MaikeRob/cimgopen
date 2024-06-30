@@ -34,4 +34,5 @@ void imagePainter(IMAGE* image);
 
 void freeImage(IMAGE* image);
 
+IMAGE *imageScaler(IMAGE *image, int new_width, int new_height);
 #endif

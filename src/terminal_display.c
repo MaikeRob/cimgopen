@@ -23,7 +23,6 @@ void printPixel(int x, int y, RGB *pixel) {
 /*Imprime no console uma imagem recebida, com pixels quadrados*/
 void imagePainter(IMAGE *image) {
   clear();
-  //system("clear"); // Solução não portável
   for (int i = 0; i < image->height; i++) {
     for (int j = 0; j < image->width; j++) {
       printPixel(j * 2, i, &image->data_matriz[i][j]);

@@ -29,13 +29,14 @@ int main(int argc, char *argv[]){
   }
   fclose(arquivo);
 
-  //Processa o buffer e cria uma estrutura de dados IMAGE
   IMAGE *original_image = imageStructureBuilder(file_buffer);
-  //Imprime a imagem no terminal no modo padrão
   imagePainter(original_image);
-  printPixel(1, 1, &original_image->media);
-  //Libera Memoria
+  getchar();
+  IMAGE *teste = imageScaler(original_image,50,50);
+  imagePainter(teste);
+
   freeImage(original_image);
+  freeImage(teste);
   
   return 0;
 }

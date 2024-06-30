@@ -1,0 +1,59 @@
+# Ignorar arquivos binários e objetos
+*.o
+*.obj
+*.so
+*.a
+*.out
+*.lib
+*.dll
+*.exe
+*.dylib
+
+# Ignorar arquivos de dependências
+*.d
+*.dep
+
+# Ignorar diretórios de build
+/build/
+/bin/
+/obj/
+/out/
+
+# Ignorar arquivos de logs
+*.log
+
+# Ignorar arquivos de editor/IDE
+*.swp
+*~
+*.swo
+*.sublime-workspace
+*.sublime-project
+.vscode/
+.idea/
+
+# Ignorar arquivos de configuração do Makefile
+#Makefile~
+#*.mk
+
+# Ignorar arquivos temporários e de backup
+*.bak
+*.tmp
+*.temp
+*.old
+
+# Ignorar arquivos gerados pelo CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CMakeLists.txt.user
+
+# Ignorar arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar arquivos de teste
+/test/
+/tests/
+*.gcno
+*.gcda
+*.gcov
