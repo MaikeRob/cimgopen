@@ -1,16 +1,16 @@
 all: main
 
 CC = gcc
-override CFLAGS += -g -Wno-everything -pthread -lm
+override CFLAGS += -g -pthread -lm
 
 SRCS = $(shell find . -name '.ccls-cache' -type d -prune -o -type f -name '*.c' -print)
 HEADERS = $(shell find . -name '.ccls-cache' -type d -prune -o -type f -name '*.h' -print)
 
 main: $(SRCS) $(HEADERS)
-	$(CC) $(CFLAGS) $(SRCS) -o "$@"
+	$(CC) $(SRCS) $(CFLAGS)  -o "$@"
 
 main-debug: $(SRCS) $(HEADERS)
-	$(CC) $(CFLAGS) -O0 $(SRCS) -o "$@"
+	$(CC) $(SRCS) -o "$@" -O0 $(CFLAGS) 
 
 clean:
 	rm -f main main-debug
