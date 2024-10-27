@@ -7,10 +7,6 @@
 //Calcula a quantidade de digitos de um inteiro*/
 int numberofDigits(int number) { return ((int)floor(log10(number)) + 1); }
 
-IMAGE createIMAGE(){
-
-}
-
 /*Constrói uma estrutura imagem usando
  os dados do buffer retirado do arquivo*/
 IMAGE *imageStructureBuilder(unsigned char *file_buffer_array) {
@@ -71,7 +67,7 @@ IMAGE *imageScaler(IMAGE *image, int new_width, int new_height){
   for (int i = 0; i < new_height; i++)
     *(new_image->data_matriz + i) = malloc(new_width * sizeof(RGB));
 
-  
+
   unsigned int factor = 2;
   unsigned int sum_red = 0, sum_green = 0, sum_blue = 0;
   for(int new_y = 0; new_y < new_height; new_y++){
@@ -90,5 +86,5 @@ IMAGE *imageScaler(IMAGE *image, int new_width, int new_height){
     }
   }
   return new_image;
-} 
+}
 

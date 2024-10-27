@@ -1,13 +1,7 @@
 #include <stdio.h>
 #include "headers/image.h"
 #include "headers/terminal_display.h"
-
-long fsize(FILE *file_pointer) {
-  fseek(file_pointer, 0, SEEK_END);
-  long temp = ftell(file_pointer);
-  fseek(file_pointer, 0, SEEK_SET);
-  return temp;
-}
+#include "headers/utils.h"
 
 int main(int argc, char *argv[]){
 
@@ -37,6 +31,6 @@ int main(int argc, char *argv[]){
 
   freeImage(original_image);
   freeImage(teste);
-  
+
   return 0;
 }

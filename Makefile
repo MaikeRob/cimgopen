@@ -1,17 +1,16 @@
 all: cimg
 
-
 CC = gcc
 CFLAGS = -Wall -Wextra -pedantic -lm
 #-Wall e -Wextra ativam avisos de compição
 #-pedantic força o compilador a aderir estritamente aos padrões da linguagem C, como ANSI C ou C99
 #-lm biblioteca matematica
 
-SOURCE_DIR = src
+SRC_DIR = src
 HEADERS_DIR = headers
 OBJ_DIR := obj
 
-SRCS = $(wildcard $(SOURCE_DIR)/*.c)
+SRCS = $(wildcard $(SRC_DIR)/*.c)
 HEADERS = $(wildcard $(HEADERS_DIR)/*.h)
 OBJS := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
