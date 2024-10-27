@@ -1,4 +1,5 @@
 # Ignorar arquivos binários e objetos
+cimg
 *.o
 *.obj
 *.so

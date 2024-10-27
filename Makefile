@@ -1,16 +1,26 @@
-all: main.o
+all: cimg
+
 
 CC = gcc
-override CFLAGS += -g -pthread -lm
+CFLAGS = -Wall -Wextra -pedantic -lm
+#-Wall e -Wextra ativam avisos de compição
+#-pedantic força o compilador a aderir estritamente aos padrões da linguagem C, como ANSI C ou C99
+#-lm biblioteca matematica
 
-SRCS = $(shell find . -name '.ccls-cache' -type d -prune -o -type f -name '*.c' -print)
-HEADERS = $(shell find . -name '.ccls-cache' -type d -prune -o -type f -name '*.h' -print)
+SOURCE_DIR = src
+HEADERS_DIR = headers
+OBJ_DIR := obj
 
-main.o: $(SRCS) $(HEADERS)
-	$(CC) $(SRCS) $(CFLAGS)  -o "$@"
+SRCS = $(wildcard $(SOURCE_DIR)/*.c)
+HEADERS = $(wildcard $(HEADERS_DIR)/*.h)
+OBJS := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-main-debug.o: $(SRCS) $(HEADERS)
-	$(CC) $(SRCS) -o "$@" -O0 $(CFLAGS) 
+cimg: $(OBJS)
+	$(CC) -o $@ main.c $^ $(CFLAGS)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f main.o main-debug.o
+	rm -rf $(OBJ_DIR) cimg
